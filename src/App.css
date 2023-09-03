@@ -1,140 +1,319 @@
-/* HEARDER**************** */
+/* .container {
+  width: 1280px;
+
+  margin: 0 auto;
+
+  height: 100%;
+  width: 1000px;
+  margin: auto;
+} */
+/* 
+@media (max-width: 1024px) {
+  .container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+}
+@media (min-width: 576px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+}
+@media (min-width: 1200px) {
+}
+@media (min-width: 1400px) {
+} */
 body {
-  height: 4000px;
+  font-family: "Marvel", sans-serif;
   width: 100%;
   position: relative;
   background-position: center;
   background-size: cover;
-  background-image: url("./assets/test.jpeg");
-  /* background-color: black; */
+  background-image: url("./assets/avengers.jpeg");
 }
-.hero {
-  margin: 70px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
+/* opacity dans toute les pages */
 .opacity {
-  background-color: rgb(0, 0, 0, 0.3);
+  background-color: rgb(0, 0, 0, 0.2);
   width: 1300px;
   height: 800px;
   align-self: center;
-  /* overflow: hidden; */
-  margin-top: 90px;
+  overflow: hidden;
+  margin-top: 50px;
   border-radius: 20px;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
+/* ********************************************************* */
+/******************** TEXT******************** */
+h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transform: scale(1.2);
+}
+span {
+  color: white;
+}
+a {
+  color: white;
+}
+p {
+  display: inline;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 100% 100%;
+  transition: background-size 1000ms, color 700ms;
+}
+h2 {
+  transform: scale(1.2);
+  color: white;
+}
+h3 {
+  color: white;
+  margin-left: 10px;
+}
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------HEADER------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+
+.header-button {
+  display: flex;
+  padding: 20px;
+}
 .header {
   display: flex;
   justify-content: space-between;
-
   align-items: center;
   height: 100px;
 }
-/* HEARDER**************** */
-.container {
-  display: flex;
-  flex-wrap: wrap;
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------HERO------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+.hero {
+  color: black;
+  margin: 200px 550px;
 }
 
+.hero-p {
+  border: 1px solid transparent;
+  margin: 200px;
+  color: rgb(14, 1, 1);
+}
+.hero-p {
+  border-color: pink;
+  box-shadow: 0 0 5px pink, 0 0 25px pink, 0 0 50px pink, 0 0 100px pink,
+    0 0 200px pink;
+}
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------HEADER------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+
+/**************** BARRE DE RECHERCHE************* */
 .search-input {
   border: 1px solid transparent;
   width: 400px;
   text-align: center;
-  background-color: white;
+  background-color: rgb(218, 204, 204);
   border-radius: 5px;
   height: 37px;
   border: none;
   outline: none;
   font-size: 16px;
 }
-.skip {
-  margin: 0 400px;
-  /* display: flex;
-  justify-content: space-around; */
+
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+/* --------SIGNUP------- */
+/* --------------------- */
+/* --------------------- */
+/* --------------------- */
+
+.signup-sinscrire {
+  margin: 10px 220px;
 }
 .signup {
-  border: solid 3px red;
-
+  border-radius: 10px;
+  border: solid 1px red;
   margin: 50px 200px;
   display: flex;
-
+  flex-direction: column;
   padding: 10px;
-  height: 400px;
+  height: 500px;
+}
+.formulaire {
+  margin: 50px 200px;
+}
+
+.signup-connect {
+  border: 1px solkid red;
 }
 .signup-form {
-  border: solid 11px red;
-}
-.input-form > input {
+  border-radius: 5px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  margin: 50px 200px;
-  width: 350px;
+  width: 250px;
+}
+.newlestter {
+  color: white;
+}
+
+.signup-form {
+  width: 300px;
   height: 25px;
-  row-gap: 20px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  cursor: pointer;
+  transition: border-color 0, 25s;
+  border-radius: 8px;
 }
-.connect {
-  text-align: center;
-}
-.connet {
-  border: solid 11px red;
-  margin: -90px 50px 10px 300px;
-}
-.compte {
-  color: grey;
-}
-.search-input:hover {
+.signup-form:hover {
   border-color: pink;
   box-shadow: 0 0 5px pink, 0 0 25px pink, 0 0 50px pink, 0 0 100px pink,
     0 0 200px pink;
 }
-.menu {
-  padding: 20px;
-}
-h1 {
-  margin: 20px;
-  color: white;
-  text-align: center;
-  font-size: 25px;
-}
-p {
-  color: white;
-}
-.header-button {
-  gap: 15px;
+
+.checkbox-container {
   display: flex;
-  padding: 20px;
+  flex-direction: column;
+  /* border: 1px solid green; */
 }
+
+.inscription {
+  width: 350px;
+  height: 70px;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid transparent;
+  font-size: 1em;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color 0, 25s;
+}
+
+.inscription:hover {
+  border-color: pink;
+  box-shadow: 0 0 5px pink, 0 0 25px pink, 0 0 50px pink, 0 0 100px pink,
+    0 0 200px pink;
+}
+
+/* ***************SIGNUP************************** */
+/* **********LOGIN****************************** */
+.login {
+  width: 800px;
+  border-radius: 10px;
+  border: solid 1px red;
+  margin: 50px 200px;
+  height: 500px;
+}
+.connect {
+  margin: 50px 200px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 50px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  cursor: pointer;
+  transition: border-color 0, 25s;
+  border-radius: 8px;
+}
+.connect:hover {
+  border-color: pink;
+  box-shadow: 0 0 5px pink, 0 0 25px pink, 0 0 50px pink, 0 0 100px pink,
+    0 0 200px pink;
+}
+
+.connect-login {
+  margin: 10px 270px;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 90%,
+    rgb(45, 23, 23) 90%,
+    rgb(44, 27, 30) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-position: right;
+  transition: background-size 300ms;
+}
+.connect-login:hover {
+  background-size: 100% 100%;
+  background-position-x: left;
+}
+
+/* ********************************************************* */
+/* **********LOGIN****************************** */
+
+.comics.description {
+  color: white;
+}
+/* ********************************************************* */
+/******************** CHARACTERS******************* */
 .chara-img {
-  margin: 120px 500px;
-  width: 400px;
-  border-radius: 0 100px;
+  border: 22px solid red;
 }
 .charcters-pic {
-  border-radius: 20px 60px;
+  margin: 30px;
+  border-radius: 20px 1px;
+  border: 2px solid red;
+}
+
+.card {
+  margin: 0px 25px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  height: 250 px;
-  width: 250px;
-  /* overflow: hidden; */
+  grid-template-columns: repeat(4, 1fr);
+
+  border: 1px solid red;
+  border-radius: 20px;
+}
+.charaname {
+  margin: 0 80px;
 }
 
 .charcters-pic:hover {
+  transform: scale(1.2);
   border-color: rgb(186, 17, 189);
   box-shadow: 0 0 5px rgb(186, 17, 189), 0 0 25px rgb(186, 17, 189),
     0 0 50px rgb(186, 17, 189), 0 0 100px rgb(186, 17, 189),
     0 0 200px rgb(186, 17, 189);
 }
-
+.block {
+  /* border: 11px solid green; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
 .logo:hover {
   border-color: pink;
   box-shadow: 0 0 5px pink, 0 0 25px pink, 0 0 50px pink, 0 0 100px pink,
     0 0 200px pink;
 }
-
+/* ********************************************************* */
 /**************************PROF************************* */
 /* 
 .prof {
@@ -214,6 +393,7 @@ p {
   transition-delay: 0.25s;
 } */
 /**************************PROF************************* */
+/* ********************************************************* */
 .logo {
   cursor: pointer;
   display: flex;
@@ -221,31 +401,42 @@ p {
   width: 145px;
   border-radius: 5px;
 }
+/* ********************************************************* */
+/* ******************IMAGE MARVEL********************** */
 
-.marvel-card {
-  border-radius: 15px;
-  width: 360px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.charcters-card {
+/* ********************COMICS **************************/
+.container-marvel {
+  margin: 0px 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  width: 360px;
-  display: flex;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(4, 1fr);
   border: 1px solid red;
-  height: 250 px;
-  width: 250px;
-  overflow: scroll hidden;
-}
-.charcters-card:-webkit-scrollbar {
-  overflow-y: none;
+  border-radius: 20px;
 }
 
+.comics {
+  width: 100px;
+}
+.titlecomic {
+  margin-bottom: 30px;
+  margin: 30px;
+  width: 200px;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 30px;
+
+  margin: 30px;
+  width: 100px;
+}
+/* ********************************************************* */
+/*******************  Button ***********************************/
+
+.sedconncer-sincrire {
+  border: 1 px solid red;
+  margin: 0px 200px;
+}
 button {
   width: 150px;
   height: 40px;
@@ -262,6 +453,5 @@ button:hover {
   box-shadow: 0 0 5px pink, 0 0 25px pink, 0 0 50px pink, 0 0 100px pink,
     0 0 200px pink;
 }
-.charac {
-  border: 1px solid red;
-}
+/* ********************************************************* */
+/*******************  Button ***********************************/

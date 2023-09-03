@@ -3,10 +3,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Characters = ({ search, skip, setSkip, limit }) => {
+const Characters = ({ search }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
+  const [skip, setSkip] = useState(0);
+  const [limit] = useState(100);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,11 +18,13 @@ const Characters = ({ search, skip, setSkip, limit }) => {
       const response = await axios.get(
         `https://site--marvel-backend--4xcmgcydfhpz.code.run/characters/?name=${search}&skip=${skip}&limit=${limit}`
       );
+      console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     };
 
     fetchData();
+    console.log(skip);
   }, [skip]);
 
   if (!data || isLoading) return null;
@@ -30,53 +35,56 @@ const Characters = ({ search, skip, setSkip, limit }) => {
 
   return (
     <>
-      <div className="skip">
+      {/* pagination */}
+
+      <div className="pagination">
         <button
-          onClick={(_id) => {
-            setSkip(skip - 100);
+          onClick={() => {
+            setSkip(skip - data.limit);
             console.log(skip);
             navigate("/Characters");
           }}
         >
           Page précédente
         </button>
-        <button
-          onClick={() => {
-            setSkip(skip + 100);
-            console.log(skip);
-            navigate("/Characters");
-          }}
-        >
-          Page suivante
-        </button>
       </div>
-      <div className="container">
-        {filteredCharacters.map((character) => {
-          return (
-            <>
-              <article className="charcters-card" key={name._id}>
-                <h1>{character.name}</h1>
-                <br />
 
-                <Link to={`/comics/${character._id}`} key={name._id}>
-                  <img
-                    className="charcters-pic"
-                    height={250}
-                    width={250}
-                    src={
-                      character.thumbnail.path +
-                      "." +
-                      character.thumbnail.extension
-                    }
-                    alt=""
-                  />
-                </Link>
+      <button
+        onClick={() => {
+          setSkip(skip + data.limit);
+        }}
+      >
+        Page suivante
+      </button>
 
-                <p>{character.description}</p>
-              </article>
-            </>
-          );
-        })}
+      <div className="block">
+        <div className="card">
+          {filteredCharacters.map((character) => {
+            return (
+              <>
+                <article key={name._id}>
+                  <h2 className="charaname"> {character.name}</h2>
+
+                  <Link to={`/comics/${character._id}`} key={name._id}>
+                    <img
+                      className="charcters-pic"
+                      height={250}
+                      width={250}
+                      src={
+                        character.thumbnail.path +
+                        "." +
+                        character.thumbnail.extension
+                      }
+                      alt=""
+                    />
+                  </Link>
+
+                  <p>{character.description}</p>
+                </article>
+              </>
+            );
+          })}
+        </div>
       </div>
     </>
   );

@@ -1,16 +1,19 @@
-import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Signup = ({ handleToken }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState("");
-
   const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -27,16 +30,21 @@ const Signup = ({ handleToken }) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
     try {
+      event.preventDefault();
+      setIsLoading(true);
+      const data = {
+        username,
+        email,
+        password,
+      };
       const response = await axios.post(
-        // "https://site--marvel-backend--4xcmgcydfhpz.code.run/signup/",
         "https://site--marvel-backend--4xcmgcydfhpz.code.run/signup/",
         {
-          username: username,
-          password: password,
-          email: email,
-          newsletter: newsletter,
+          username,
+          password,
+          email,
+          newsletter,
         }
       );
 
@@ -45,78 +53,72 @@ const Signup = ({ handleToken }) => {
       // console.log(data);
 
       handleToken(response.data.token);
-      navigate("/");
+      navigate("/comics");
     } catch (error) {
       console.log(error.message);
-      if (error.response.data.message === "This email already has an account") {
+      if (error.response.token === "error") {
         setErrorMessage(
           "Ce mail est déjà utilisé, veuillez en choisir un autre"
         );
-      } else if (error.response.data.message === "Missing parameters") {
+      } else if (alert("Missing parameters")) {
         setErrorMessage("Veuillez remplir tous les champs :)");
       }
     }
+    setIsLoading(false);
   };
 
   return (
     <main className="container">
       <div className="signup">
-        <h1>S'inscrire</h1>
+        <h1 className="signup-sinscrire">S'inscrire</h1>
         <br />
-        <form id="contactform" onSubmit={handleSubmit}>
-          <input
-            className="signup-form"
-            onChange={handleUsernameChange}
-            type="text"
-            name="username"
-            id="Nom d'utilisateur"
-            value={username}
-            placeholder="Nom d'utilisateur"
-          />
-          <br />
-          <input
-            className="signup-form"
-            onChange={handleEmailChange}
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Email"
-          />
-          <br />
-          <input
-            className="signup-form"
-            onChange={handlePasswordChange}
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Votre mot de passe"
-          />
-          <br />
-          <div className="checkbox-container">
-            <div>
-              <div className="inpu">
-                <input
-                  className="signup-form"
-                  onChange={handleNewslettersChange}
-                  type="checkbox"
-                  value={newsletter}
-                  name="newsletter"
-                />
-                <>S'inscrire à notre newsletters</>
-              </div>
-              <p>
-                En m'inscrivant je confirme avoir lu et accepté les Termes &
-                Conditions <br />
-                et Politique de Confidentialité de Marvel. Je confirme avoir au
-                moins 15 ans.
-              </p>
-            </div>
+        <div className="formulaire">
+          <form id="contactform" onSubmit={handleSubmit}>
+            <input
+              className="signup-form"
+              onChange={handleUsernameChange}
+              type="text"
+              value={username}
+              placeholder="Nom d'utilisateur"
+            />
             <br />
-            <input className="inscription" type="submit" value="S'inscrire" />
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-          </div>
-        </form>
-        <Link to="/login">Tu as déjà un compte ? connectes-toi !</Link>
+            <input
+              className="signup-form"
+              onChange={handleEmailChange}
+              type="email"
+              value={email}
+              placeholder="Email"
+            />
+            <br />
+            <input
+              className="signup-form"
+              onChange={handlePasswordChange}
+              type="password"
+              value={password}
+              placeholder="Votre mot de passe"
+            />
+            <br />
+            <div className="checkbox">
+              <div>
+                <input
+                  type="checkbox"
+                  checked={newsletter}
+                  onChange={handleNewslettersChange}
+                />
+                <span className="newlestter">
+                  S'inscrire à notre newsletters
+                </span>
+              </div>
+              <br />
+              <input className="inscription" type="submit" value="S'inscrire" />
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+            </div>
+          </form>
+        </div>
+
+        <Link className="signup-connect" to="/login">
+          Tu as déjà un compte ? connectes-toi !
+        </Link>
       </div>
     </main>
   );

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Character = () => {
   const [data, setData] = useState({});
@@ -27,18 +28,37 @@ const Character = () => {
   return isLoading ? (
     <p> Loading ...</p>
   ) : (
-    // <>
-    <div className="charac">
-      <h1>{data.name}</h1>
-      <img
-        className="chara-img"
-        src={data.thumbnail.path + "." + data.thumbnail.extension}
-        alt=""
-      />
-      <p>{data.description}</p>
+    <>
+      <div className="charac">
+        <h1>{data.name}</h1>
+        <img
+          className="chara-img"
+          src={data.thumbnail.path + "." + data.thumbnail.extension}
+          alt=""
+        />
+        <h1>{data.name}</h1>
+        <p>{data.description}</p>
 
-      <br />
-    </div>
+        {data.comics.map((comics, index) => {
+          return (
+            <div key={index}>
+              <Link to={`/comic/${comics._id}`}>
+                <h1>{comics.name}</h1>
+                <img
+                  to={`/comic/${comics._id}`}
+                  src={`${comics.thumbnail.path}/standard_fantastic.${comics.thumbnail.extension}`}
+                  alt="comic-img"
+                />
+                <div>{comics.title}</div>
+                <div>{comics.description}</div>
+              </Link>
+            </div>
+          );
+        })}
+
+        <br />
+      </div>
+    </>
   );
 };
 

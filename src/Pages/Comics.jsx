@@ -1,11 +1,16 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Comics = ({ search, skip, setSkip }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  // const navigate = useNavigate();
+
+  const [count, setCount] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +20,7 @@ const Comics = ({ search, skip, setSkip }) => {
       );
       console.log(response.data);
       setData(response.data);
-
+      setCount(count);
       setIsLoading(false);
     };
 
@@ -31,45 +36,37 @@ const Comics = ({ search, skip, setSkip }) => {
 
   return (
     <>
-      {/* <button
-        onClick={() => {
-          setSkip(skip + 100);
-          console.log(skip);
-          navigate("/Comics");
-        }}
-      >
-        page suivante
-      </button>
-      <button
-        onClick={() => {
-          setSkip(skip - 100);
-          console.log(skip);
-          navigate("/Comics");
-        }}
-      >
-        page précédente
-      </button> */}
-
-      <div className="container">
+      <article height={250} width={250} className="container-marvel">
         {filteredComics.map((comic) => {
           return (
-            <div className="marvel-card" key={comic._id}>
-              <br />
-              <h1>{comic.title}</h1>
-              <br />
-              <div className="marvel-img">
-                <img
-                  className="marvel-pic"
-                  src={comic.thumbnail.path + "." + comic.thumbnail.extension}
-                  alt=""
-                />
+            <>
+              <div className="marvel-card" key={comic._id}>
+                <div>
+                  {data.results.map((comics, index) => {
+                    return (
+                      <>
+                        <div key={index} className="comics">
+                          <Link to={`/comics/${comics._id}`}>
+                            <h2 className="titlecomic">{comics.title}</h2>
+                            <img
+                              src={`${comics.thumbnail.path}.${comics.thumbnail.extension}`}
+                              alt="marvel-img"
+                            />
+
+                            <div className="description">
+                              {comics.description}
+                            </div>
+                          </Link>
+                        </div>
+                      </>
+                    );
+                  })}{" "}
+                </div>
               </div>
-              <br />
-              <p>{comic.description}</p>
-            </div>
+            </>
           );
         })}
-      </div>
+      </article>
     </>
   );
 };
